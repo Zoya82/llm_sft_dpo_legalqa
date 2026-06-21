@@ -1,0 +1,38 @@
+# ===== 模型权重 / 训练产物（太大，不入库）=====
+outputs/sft_lora/
+outputs/dpo_lora/
+outputs/sft_merged/
+outputs/dpo_merged/
+**/checkpoint-*/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# 保留这些可视化/结论产物（取消忽略）
+!outputs/figures/
+!outputs/ablation_table.md
+!outputs/eval/
+
+# ===== 下载的数据集 / 派生数据（不入库，避免转分发；跑 01、02 会自动重建）=====
+data/disc_law_qa.jsonl
+data/qa_pool.json
+data/sft_train.json
+data/sft_eval.json
+data/dpo_train.json
+# 保留 seed_clauses.jsonl（自带的离线兜底小样本）
+
+# ===== Python =====
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# ===== 系统 / 编辑器 =====
+.DS_Store
+.vscode/
+.idea/
+
+# ===== HuggingFace 缓存（若下载到项目内）=====
+models/
+hf_cache/
+PROJECT_SUMMARY.md

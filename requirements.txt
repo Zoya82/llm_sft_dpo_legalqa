@@ -1,0 +1,9 @@
+# 在已有 torch / transformers / accelerate 的环境上，补装这几个：
+peft>=0.13
+trl>=0.12
+datasets>=3.0
+matplotlib>=3.8
+# 可选：评测用
+sacrebleu>=2.4
+# 安装命令（在项目根目录执行）：
+#   python3 -m pip install -r requirements.txt
