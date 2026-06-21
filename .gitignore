@@ -36,3 +36,4 @@ __pycache__/
 models/
 hf_cache/
 PROJECT_SUMMARY.md
+_build_notebooks.py
