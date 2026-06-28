@@ -20,6 +20,7 @@ data/qa_pool.json
 data/sft_train.json
 data/sft_eval.json
 data/dpo_train.json
+data/stard_corpus.jsonl
 # 保留 seed_clauses.jsonl（自带的离线兜底小样本）
 
 # ===== Python =====
