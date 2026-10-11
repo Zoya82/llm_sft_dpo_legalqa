@@ -1,50 +1,52 @@
-# 中文法律问答：Qwen2.5 后训练（SFT + DPO）与评测（DISC-Law）
+# 中文法律问答：SFT、DPO、RAG 与引用核验
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.x-ee4c2c)
-![PEFT](https://img.shields.io/badge/PEFT-LoRA-success)
-![License](https://img.shields.io/badge/License-MIT-green)
+用 Qwen2.5-0.5B-Instruct 完成 LoRA SFT、DPO 和 RAG 实验，并把回答质量拆成法条引用、复读、跑题与偏好评价。个人项目，历史实验在 Apple M4 Pro、24GB、MPS 上执行。
 
-基于 Qwen2.5-0.5B-Instruct 在复旦 DISC-Law 中文法律问答数据上完成 LoRA SFT 与 DPO 偏好对齐，设置 base / +SFT / +SFT+DPO 三档消融，用字符级 BLEU 与规则 judge 评估，并针对评测中暴露的法条幻觉补充 RAG 检索增强 baseline。
+**更新至 2026-10-11**：公开最新实验脚本、Notebook、保存结果、事实总账及完整报告。本次发布补充路径兼容与版本说明，历史模型实验没有重跑。
 
-## 结果（评测集与训练集隔离）
+## 先看什么
 
-| 实验 | 字符 BLEU | 规则 judge |
-|---|---|---|
-| base | 0.051 | 0.787 |
-| +SFT | 0.058 | 0.779 |
-| +SFT+DPO | **0.065** | 0.752 |
+- [完整项目报告](PROJECT_REPORT.md)：问题、实验、失败与迭代。
+- [事实总账](FACTS_LEDGER.md)：数字、分母、版本及原始记录定位。
+- [最新重算结果](outputs/report_tables/T_ablation148.md)：当前引用核验器口径。
+- [实验脚本](experiments/README.md)、[六步 Notebook](notebooks/)：实现与复现入口。
+- [离线核验演示](examples/check_citations.py)：无需模型下载，检查条号及引用。
 
-judge 逐档下降源于规则 judge 奖励"关键词堆砌"，单一指标不可靠；loss 曲线与消融对比图见 [`outputs/figures/`](outputs/figures)，badcase 见 [`outputs/eval/`](outputs/eval)。
+## 已保存的结果
 
-## 方法
+下表来自 `outputs/report_tables/T_ablation148.md`，每档 148 条留出问答，生成结果相同、由当前核验器重新统计。引用准确率以“核实正确＋确认错误”的引用数为分母；待复核引用单列，不计入该分母。幻觉、复读和跑题为回答级指标。旧报告的部分数字使用早期核验器，查看时需区分版本。
 
-数据清洗去重 → SFT/DPO 数据构造（5 类劣化规则生成偏好对）→ LoRA SFT → DPO 对齐 → 三档消融评测（BLEU + 规则 judge + badcase）→ RAG 检索增强对比。
+| 生成配置 | 核实正确／确认错误／待复核 | 引用准确率 | 法条幻觉率 | 复读率 | 跑题率 |
+|---|---|---|---|---|---|
+| base | 13／80／12 | 14% | 51% | 11% | 5% |
+| SFT，750 步 | 33／60／20 | 35% | 32% | 25% | 9% |
+| SFT＋规则 DPO，450 步 | 15／54／18 | 22% | 35% | 6% | 2% |
+| 上述 DPO＋RAG v2 | 17／18／9 | 49% | 11% | 7% | 1% |
 
-## 结构
+RAG v2 在这批样本上降低了法条幻觉，有引用回答比例降到 22%。因此需要同时看错误率、引用量及回答覆盖情况。
 
-```
-notebooks/  01 数据探查与清洗 · 02 SFT/DPO 数据构造 · 03 LoRA SFT
-            04 DPO 对齐 · 05 消融评测 · 06 RAG 增强
-data/       seed_clauses.jsonl（离线兜底样本）· clauses.jsonl（RAG 法条）
-outputs/    ablation_table.md · figures/ · eval/
-```
+三组人工 pairwise 盲评实际判了 35、28、20 条。SFT 对 base 为 18 胜、14 负、3 平；规则 DPO 对 SFT 为 21 胜、7 负；RAG 对 DPO 为 11 胜、9 负。具体区间与抽样协议见事实总账第10节。另一个基座比较为 AI 辅助非盲评价，单独标注。
+
+## 实现
+
+数据先留出评测集，再拆分多小节问答 → SFT → DPO → bge 向量召回 top100 → reranker top5 → 生成 → 真实法条库引用核验＋NLI 复核。
+
+核验器区分“第234条”与“第234条之一”，记录不存在、张冠李戴、已废止、待复核等状态。后续拒绝采样产生 522 条模型回答，保留 2126 对混合偏好数据并运行 266 步 DPO；该分支是后续实验，不对应上表的规则 DPO 450 步。
 
 ## 运行
 
 ```bash
-pip install -r requirements.txt
-# 按顺序运行 notebooks/ 01 → 06
-# 每个 notebook 顶部可切 run_mode = "smoke"(快) / "full"(完整)
+python3 examples/check_citations.py
+python3 -m pip install -r requirements.txt
+# 在项目根目录启动 Jupyter，按 notebooks/01 → 06 执行。
 ```
 
-底模 Qwen2.5-0.5B-Instruct（Apple MPS / 单卡可跑），可切 1.5B。技术栈：Transformers / PEFT / TRL / ChromaDB / bge embedding。
+完整运行需自行准备 Qwen2.5-0.5B-Instruct、本地 embedding、reranker、NLI 模型与数据。各 Notebook 的路径及下载配置见首格，模型存入 `models/`；下载数据和权重不随仓库分发。
 
-## 数据集
+**版本选择**：02 在缺少 `dpo_onpolicy.json` 时构造规则偏好数据。历史规则 DPO 使用3600对规则数据、450步；当前04包含后续2126对、266步对齐实验，重跑时需要按所选数据版本核对配置。450步模型权重已被后续训练覆盖，历史训练数据没有随仓库分发；本仓库提供保存预测与当前训练流程。完整版本关系见事实总账第12节。
 
-DISC-Law-SFT（复旦 FudanDISC 开源），版权归原作者，未随仓库分发（见 .gitignore）。
-`notebooks/01` 首次运行自动下载样本（默认 2000 条），下不动时回退内置 `data/seed_clauses.jsonl`。
+## 验证与边界
 
-## License
+本次发布验证了 Python 语法、Notebook JSON、离线引用演示及保存结果口径，没有重跑训练或全量 NLI。核验阈值主要在合成样本标定；人工校准不足，结果适用于该批实验数据。尚未完成的实验在报告和事实总账中标注。
 
-[MIT](LICENSE)
+DISC-Law-SFT 和 STARD 的权利归原作者，原始数据不随仓库分发。代码沿用 [MIT](LICENSE)。

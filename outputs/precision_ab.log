@@ -1,0 +1,237 @@
+MPS 精度对比:fp32 vs bf16,各跑 50 步(同 seed / 同数据 / 唯一变量是 dtype)
+预计每组 43 分钟
+
+───── fp32 开始 ─────
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 7831.69it/s]
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+
+  0%|          | 0/50 [00:00<?, ?it/s]
+  2%|▏         | 1/50 [00:08<07:16,  8.90s/it]
+  4%|▍         | 2/50 [00:15<06:07,  7.65s/it]
+  6%|▌         | 3/50 [00:23<06:13,  7.95s/it]
+  8%|▊         | 4/50 [00:33<06:28,  8.45s/it]
+ 10%|█         | 5/50 [00:41<06:15,  8.35s/it]
+                                              
+
+ 10%|█         | 5/50 [00:41<06:15,  8.35s/it]
+ 12%|█▏        | 6/50 [00:53<07:00,  9.55s/it]
+ 14%|█▍        | 7/50 [01:07<07:53, 11.01s/it]
+ 16%|█▌        | 8/50 [01:22<08:33, 12.22s/it]
+ 18%|█▊        | 9/50 [01:43<10:14, 14.99s/it]
+ 20%|██        | 10/50 [02:17<13:55, 20.90s/it]
+                                               
+
+ 20%|██        | 10/50 [02:17<13:55, 20.90s/it]
+ 22%|██▏       | 11/50 [02:48<15:38, 24.07s/it]
+ 24%|██▍       | 12/50 [03:19<16:38, 26.28s/it]
+ 26%|██▌       | 13/50 [03:38<14:48, 24.01s/it]
+ 28%|██▊       | 14/50 [04:04<14:46, 24.63s/it]
+ 30%|███       | 15/50 [04:19<12:39, 21.71s/it]
+                                               
+
+ 30%|███       | 15/50 [04:19<12:39, 21.71s/it]
+ 32%|███▏      | 16/50 [05:03<16:08, 28.50s/it]
+ 34%|███▍      | 17/50 [05:36<16:18, 29.67s/it]
+ 36%|███▌      | 18/50 [06:34<20:24, 38.26s/it]
+ 38%|███▊      | 19/50 [07:11<19:29, 37.72s/it]
+ 40%|████      | 20/50 [07:46<18:35, 37.18s/it]
+                                               
+
+ 40%|████      | 20/50 [07:47<18:35, 37.18s/it]
+ 42%|████▏     | 21/50 [08:35<19:34, 40.49s/it]
+ 44%|████▍     | 22/50 [09:20<19:35, 42.00s/it]
+ 46%|████▌     | 23/50 [10:58<26:23, 58.64s/it]
+ 48%|████▊     | 24/50 [11:47<24:09, 55.76s/it]
+ 50%|█████     | 25/50 [12:07<18:48, 45.15s/it]
+                                               
+
+ 50%|█████     | 25/50 [12:07<18:48, 45.15s/it]
+ 52%|█████▏    | 26/50 [13:21<21:30, 53.75s/it]
+ 54%|█████▍    | 27/50 [13:50<17:43, 46.25s/it]
+ 56%|█████▌    | 28/50 [14:16<14:44, 40.21s/it]
+ 58%|█████▊    | 29/50 [15:10<15:30, 44.33s/it]
+ 60%|██████    | 30/50 [15:45<13:52, 41.60s/it]
+                                               
+
+ 60%|██████    | 30/50 [15:45<13:52, 41.60s/it]
+ 62%|██████▏   | 31/50 [17:10<17:15, 54.50s/it]
+ 64%|██████▍   | 32/50 [18:30<18:42, 62.34s/it]
+ 66%|██████▌   | 33/50 [19:16<16:16, 57.45s/it]
+ 68%|██████▊   | 34/50 [20:48<18:03, 67.75s/it]
+ 70%|███████   | 35/50 [21:43<15:56, 63.78s/it]
+                                               
+
+ 70%|███████   | 35/50 [21:43<15:56, 63.78s/it]
+ 72%|███████▏  | 36/50 [22:32<13:53, 59.51s/it]
+ 74%|███████▍  | 37/50 [23:59<14:40, 67.70s/it]
+ 76%|███████▌  | 38/50 [25:33<15:09, 75.76s/it]
+ 78%|███████▊  | 39/50 [26:56<14:16, 77.90s/it]
+ 80%|████████  | 40/50 [28:17<13:06, 78.68s/it]
+                                               
+
+ 80%|████████  | 40/50 [28:17<13:06, 78.68s/it]
+ 82%|████████▏ | 41/50 [29:25<11:20, 75.56s/it]
+ 84%|████████▍ | 42/50 [30:28<09:33, 71.75s/it]
+ 86%|████████▌ | 43/50 [30:52<06:41, 57.33s/it]
+ 88%|████████▊ | 44/50 [32:16<06:32, 65.43s/it]
+ 90%|█████████ | 45/50 [33:12<05:13, 62.65s/it]
+                                               
+
+ 90%|█████████ | 45/50 [33:12<05:13, 62.65s/it]
+ 92%|█████████▏| 46/50 [34:54<04:58, 74.51s/it]
+ 94%|█████████▍| 47/50 [36:11<03:45, 75.22s/it]
+ 96%|█████████▌| 48/50 [37:11<02:21, 70.64s/it]
+ 98%|█████████▊| 49/50 [38:08<01:06, 66.41s/it]
+100%|██████████| 50/50 [39:16<00:00, 66.87s/it]
+                                               
+
+100%|██████████| 50/50 [39:16<00:00, 66.87s/it]
+                                               
+
+100%|██████████| 50/50 [39:16<00:00, 66.87s/it]
+100%|██████████| 50/50 [39:16<00:00, 47.13s/it]
+{'loss': '0.6878', 'grad_norm': '8.642', 'learning_rate': '4.6e-05', 'entropy': '1.579', 'num_tokens': '2.259e+04', 'logits/chosen': '-1.08', 'logits/rejected': '-1.146', 'mean_token_accuracy': '0.6802', 'rewards/chosen': '0.002087', 'rewards/rejected': '-0.008856', 'rewards/accuracies': '0.625', 'rewards/margins': '0.01094', 'logps/chosen': '-319.4', 'logps/rejected': '-315.3', 'epoch': '0.01881'}
+{'loss': '0.6563', 'grad_norm': '10.25', 'learning_rate': '4.1e-05', 'entropy': '1.606', 'num_tokens': '4.387e+04', 'logits/chosen': '-1.057', 'logits/rejected': '-1.14', 'mean_token_accuracy': '0.644', 'rewards/chosen': '0.001014', 'rewards/rejected': '-0.07781', 'rewards/accuracies': '0.8', 'rewards/margins': '0.07882', 'logps/chosen': '-342', 'logps/rejected': '-290.5', 'epoch': '0.03763'}
+{'loss': '0.6147', 'grad_norm': '8.389', 'learning_rate': '3.6e-05', 'entropy': '1.607', 'num_tokens': '6.673e+04', 'logits/chosen': '-1.035', 'logits/rejected': '-1.07', 'mean_token_accuracy': '0.6609', 'rewards/chosen': '-0.02977', 'rewards/rejected': '-0.2073', 'rewards/accuracies': '0.775', 'rewards/margins': '0.1775', 'logps/chosen': '-349.9', 'logps/rejected': '-328.1', 'epoch': '0.05644'}
+{'loss': '0.5827', 'grad_norm': '7.749', 'learning_rate': '3.1e-05', 'entropy': '1.511', 'num_tokens': '8.887e+04', 'logits/chosen': '-1.159', 'logits/rejected': '-1.03', 'mean_token_accuracy': '0.7021', 'rewards/chosen': '-0.03527', 'rewards/rejected': '-0.2991', 'rewards/accuracies': '0.825', 'rewards/margins': '0.2639', 'logps/chosen': '-303', 'logps/rejected': '-316', 'epoch': '0.07526'}
+{'loss': '0.5364', 'grad_norm': '8.455', 'learning_rate': '2.6e-05', 'entropy': '1.635', 'num_tokens': '1.096e+05', 'logits/chosen': '-0.9793', 'logits/rejected': '-0.9983', 'mean_token_accuracy': '0.64', 'rewards/chosen': '-0.01401', 'rewards/rejected': '-0.4143', 'rewards/accuracies': '0.775', 'rewards/margins': '0.4003', 'logps/chosen': '-329.2', 'logps/rejected': '-275.3', 'epoch': '0.09407'}
+{'loss': '0.5085', 'grad_norm': '6.768', 'learning_rate': '2.1e-05', 'entropy': '1.66', 'num_tokens': '1.329e+05', 'logits/chosen': '-1.077', 'logits/rejected': '-1.069', 'mean_token_accuracy': '0.6505', 'rewards/chosen': '-0.07205', 'rewards/rejected': '-0.6065', 'rewards/accuracies': '0.85', 'rewards/margins': '0.5344', 'logps/chosen': '-364.6', 'logps/rejected': '-329.3', 'epoch': '0.1129'}
+{'loss': '0.5096', 'grad_norm': '7.589', 'learning_rate': '1.6e-05', 'entropy': '1.601', 'num_tokens': '1.555e+05', 'logits/chosen': '-1.046', 'logits/rejected': '-1.07', 'mean_token_accuracy': '0.6599', 'rewards/chosen': '-0.03368', 'rewards/rejected': '-0.5944', 'rewards/accuracies': '0.925', 'rewards/margins': '0.5607', 'logps/chosen': '-369.8', 'logps/rejected': '-326.2', 'epoch': '0.1317'}
+{'loss': '0.5113', 'grad_norm': '6.782', 'learning_rate': '1.1e-05', 'entropy': '1.628', 'num_tokens': '1.782e+05', 'logits/chosen': '-1.082', 'logits/rejected': '-1.109', 'mean_token_accuracy': '0.6622', 'rewards/chosen': '0.05142', 'rewards/rejected': '-0.4339', 'rewards/accuracies': '0.875', 'rewards/margins': '0.4853', 'logps/chosen': '-368.8', 'logps/rejected': '-327.2', 'epoch': '0.1505'}
+{'loss': '0.4863', 'grad_norm': '6.926', 'learning_rate': '6e-06', 'entropy': '1.486', 'num_tokens': '1.972e+05', 'logits/chosen': '-1.211', 'logits/rejected': '-1.266', 'mean_token_accuracy': '0.6915', 'rewards/chosen': '-0.07166', 'rewards/rejected': '-0.7976', 'rewards/accuracies': '0.875', 'rewards/margins': '0.726', 'logps/chosen': '-269.3', 'logps/rejected': '-250.2', 'epoch': '0.1693'}
+{'loss': '0.523', 'grad_norm': '7.834', 'learning_rate': '1e-06', 'entropy': '1.571', 'num_tokens': '2.179e+05', 'logits/chosen': '-1.118', 'logits/rejected': '-1.15', 'mean_token_accuracy': '0.6681', 'rewards/chosen': '-0.07034', 'rewards/rejected': '-0.5474', 'rewards/accuracies': '0.925', 'rewards/margins': '0.477', 'logps/chosen': '-294.4', 'logps/rejected': '-280.1', 'epoch': '0.1881'}
+{'train_runtime': '2356', 'train_samples_per_second': '0.17', 'train_steps_per_second': '0.021', 'train_loss': '0.5617', 'epoch': '0.1881'}
+  完成:47.1 秒/步 | 峰值 alloc 1.90 GB | LoRA dtype ['torch.float32'] | NaN=False
+
+───── bf16 开始 ─────
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/290 [00:00<02:03,  2.34it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 637.33it/s]
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+
+  0%|          | 0/50 [00:00<?, ?it/s]
+  2%|▏         | 1/50 [00:11<09:23, 11.51s/it]
+  4%|▍         | 2/50 [00:18<07:09,  8.94s/it]
+  6%|▌         | 3/50 [00:26<06:34,  8.39s/it]
+  8%|▊         | 4/50 [00:34<06:19,  8.25s/it]
+ 10%|█         | 5/50 [00:41<05:47,  7.72s/it]
+                                              
+
+ 10%|█         | 5/50 [00:41<05:47,  7.72s/it]
+ 12%|█▏        | 6/50 [00:48<05:33,  7.57s/it]
+ 14%|█▍        | 7/50 [00:54<05:09,  7.21s/it]
+ 16%|█▌        | 8/50 [01:00<04:44,  6.77s/it]
+ 18%|█▊        | 9/50 [01:10<05:10,  7.57s/it]
+ 20%|██        | 10/50 [01:19<05:28,  8.22s/it]
+                                               
+
+ 20%|██        | 10/50 [01:19<05:28,  8.22s/it]
+ 22%|██▏       | 11/50 [01:29<05:36,  8.63s/it]
+ 24%|██▍       | 12/50 [01:38<05:34,  8.79s/it]
+ 26%|██▌       | 13/50 [01:47<05:25,  8.80s/it]
+ 28%|██▊       | 14/50 [01:57<05:32,  9.24s/it]
+ 30%|███       | 15/50 [02:04<05:00,  8.60s/it]
+                                               
+
+ 30%|███       | 15/50 [02:04<05:00,  8.60s/it]
+ 32%|███▏      | 16/50 [02:16<05:28,  9.65s/it]
+ 34%|███▍      | 17/50 [02:24<05:03,  9.20s/it]
+ 36%|███▌      | 18/50 [02:39<05:42, 10.70s/it]
+ 38%|███▊      | 19/50 [02:48<05:19, 10.29s/it]
+ 40%|████      | 20/50 [02:57<04:56,  9.89s/it]
+                                               
+
+ 40%|████      | 20/50 [02:57<04:56,  9.89s/it]
+ 42%|████▏     | 21/50 [03:06<04:39,  9.64s/it]
+ 44%|████▍     | 22/50 [03:18<04:50, 10.38s/it]
+ 46%|████▌     | 23/50 [03:26<04:19,  9.61s/it]
+ 48%|████▊     | 24/50 [03:44<05:19, 12.27s/it]
+ 50%|█████     | 25/50 [03:51<04:22, 10.51s/it]
+                                               
+
+ 50%|█████     | 25/50 [03:51<04:22, 10.51s/it]
+ 52%|█████▏    | 26/50 [04:08<04:59, 12.46s/it]
+ 54%|█████▍    | 27/50 [04:23<05:03, 13.19s/it]
+ 56%|█████▌    | 28/50 [04:39<05:14, 14.27s/it]
+ 58%|█████▊    | 29/50 [04:57<05:22, 15.38s/it]
+ 60%|██████    | 30/50 [05:06<04:29, 13.47s/it]
+                                               
+
+ 60%|██████    | 30/50 [05:06<04:29, 13.47s/it]
+ 62%|██████▏   | 31/50 [05:31<05:18, 16.74s/it]
+ 64%|██████▍   | 32/50 [05:54<05:35, 18.63s/it]
+ 66%|██████▌   | 33/50 [06:02<04:25, 15.61s/it]
+ 68%|██████▊   | 34/50 [06:27<04:51, 18.21s/it]
+ 70%|███████   | 35/50 [06:42<04:18, 17.26s/it]
+                                               
+
+ 70%|███████   | 35/50 [06:42<04:18, 17.26s/it]
+ 72%|███████▏  | 36/50 [07:03<04:18, 18.44s/it]
+ 74%|███████▍  | 37/50 [07:32<04:41, 21.67s/it]
+ 76%|███████▌  | 38/50 [07:40<03:31, 17.65s/it]
+ 78%|███████▊  | 39/50 [07:54<03:02, 16.57s/it]
+ 80%|████████  | 40/50 [08:03<02:20, 14.02s/it]
+                                               
+
+ 80%|████████  | 40/50 [08:03<02:20, 14.02s/it]
+ 82%|████████▏ | 41/50 [08:20<02:15, 15.00s/it]
+ 84%|████████▍ | 42/50 [08:28<01:44, 13.01s/it]
+ 86%|████████▌ | 43/50 [08:34<01:16, 10.95s/it]
+ 88%|████████▊ | 44/50 [08:49<01:11, 11.95s/it]
+ 90%|█████████ | 45/50 [08:57<00:53, 10.74s/it]
+                                               
+
+ 90%|█████████ | 45/50 [08:57<00:53, 10.74s/it]
+ 92%|█████████▏| 46/50 [09:20<00:58, 14.64s/it]
+ 94%|█████████▍| 47/50 [09:29<00:39, 13.01s/it]
+ 96%|█████████▌| 48/50 [09:38<00:23, 11.60s/it]
+ 98%|█████████▊| 49/50 [09:48<00:11, 11.32s/it]
+100%|██████████| 50/50 [10:00<00:00, 11.41s/it]
+                                               
+
+100%|██████████| 50/50 [10:00<00:00, 11.41s/it]
+                                               
+
+100%|██████████| 50/50 [10:00<00:00, 11.41s/it]
+100%|██████████| 50/50 [10:00<00:00, 12.01s/it]
+{'loss': '0.6786', 'grad_norm': '8.181', 'learning_rate': '4.6e-05', 'entropy': '1.58', 'num_tokens': '2.259e+04', 'logits/chosen': '-1.078', 'logits/rejected': '-1.143', 'mean_token_accuracy': '0.681', 'rewards/chosen': '0.01501', 'rewards/rejected': '-0.01877', 'rewards/accuracies': '0.35', 'rewards/margins': '0.03377', 'logps/chosen': '-319.6', 'logps/rejected': '-315.7', 'epoch': '0.01881'}
+{'loss': '0.669', 'grad_norm': '10.71', 'learning_rate': '4.1e-05', 'entropy': '1.607', 'num_tokens': '4.387e+04', 'logits/chosen': '-1.05', 'logits/rejected': '-1.133', 'mean_token_accuracy': '0.6426', 'rewards/chosen': '0.002502', 'rewards/rejected': '-0.0488', 'rewards/accuracies': '0.5', 'rewards/margins': '0.05132', 'logps/chosen': '-341.9', 'logps/rejected': '-290.4', 'epoch': '0.03763'}
+{'loss': '0.6483', 'grad_norm': '8.954', 'learning_rate': '3.6e-05', 'entropy': '1.608', 'num_tokens': '6.673e+04', 'logits/chosen': '-1.025', 'logits/rejected': '-1.064', 'mean_token_accuracy': '0.6619', 'rewards/chosen': '-0.02127', 'rewards/rejected': '-0.1226', 'rewards/accuracies': '0.525', 'rewards/margins': '0.1014', 'logps/chosen': '-349.9', 'logps/rejected': '-327.8', 'epoch': '0.05644'}
+{'loss': '0.6239', 'grad_norm': '8.084', 'learning_rate': '3.1e-05', 'entropy': '1.513', 'num_tokens': '8.887e+04', 'logits/chosen': '-1.149', 'logits/rejected': '-1.02', 'mean_token_accuracy': '0.7029', 'rewards/chosen': '-0.02126', 'rewards/rejected': '-0.1926', 'rewards/accuracies': '0.575', 'rewards/margins': '0.1714', 'logps/chosen': '-303', 'logps/rejected': '-315.1', 'epoch': '0.07526'}
+{'loss': '0.562', 'grad_norm': '8.96', 'learning_rate': '2.6e-05', 'entropy': '1.633', 'num_tokens': '1.096e+05', 'logits/chosen': '-0.97', 'logits/rejected': '-0.991', 'mean_token_accuracy': '0.6405', 'rewards/chosen': '-0.01857', 'rewards/rejected': '-0.3402', 'rewards/accuracies': '0.7', 'rewards/margins': '0.3215', 'logps/chosen': '-329.5', 'logps/rejected': '-274.7', 'epoch': '0.09407'}
+{'loss': '0.5145', 'grad_norm': '7.878', 'learning_rate': '2.1e-05', 'entropy': '1.659', 'num_tokens': '1.329e+05', 'logits/chosen': '-1.068', 'logits/rejected': '-1.058', 'mean_token_accuracy': '0.6502', 'rewards/chosen': '-0.02876', 'rewards/rejected': '-0.5145', 'rewards/accuracies': '0.775', 'rewards/margins': '0.4859', 'logps/chosen': '-364.8', 'logps/rejected': '-328.5', 'epoch': '0.1129'}
+{'loss': '0.5423', 'grad_norm': '7.777', 'learning_rate': '1.6e-05', 'entropy': '1.601', 'num_tokens': '1.555e+05', 'logits/chosen': '-1.034', 'logits/rejected': '-1.057', 'mean_token_accuracy': '0.6601', 'rewards/chosen': '-0.01754', 'rewards/rejected': '-0.4916', 'rewards/accuracies': '0.65', 'rewards/margins': '0.4742', 'logps/chosen': '-369.9', 'logps/rejected': '-325.6', 'epoch': '0.1317'}
+{'loss': '0.5385', 'grad_norm': '7.048', 'learning_rate': '1.1e-05', 'entropy': '1.628', 'num_tokens': '1.782e+05', 'logits/chosen': '-1.067', 'logits/rejected': '-1.092', 'mean_token_accuracy': '0.6613', 'rewards/chosen': '0.04065', 'rewards/rejected': '-0.3748', 'rewards/accuracies': '0.625', 'rewards/margins': '0.4153', 'logps/chosen': '-369.1', 'logps/rejected': '-326.9', 'epoch': '0.1505'}
+{'loss': '0.5087', 'grad_norm': '8.552', 'learning_rate': '6e-06', 'entropy': '1.486', 'num_tokens': '1.972e+05', 'logits/chosen': '-1.19', 'logits/rejected': '-1.246', 'mean_token_accuracy': '0.6913', 'rewards/chosen': '-0.0657', 'rewards/rejected': '-0.6821', 'rewards/accuracies': '0.675', 'rewards/margins': '0.6163', 'logps/chosen': '-269.4', 'logps/rejected': '-249.2', 'epoch': '0.1693'}
+{'loss': '0.5509', 'grad_norm': '8.17', 'learning_rate': '1e-06', 'entropy': '1.573', 'num_tokens': '2.179e+05', 'logits/chosen': '-1.098', 'logits/rejected': '-1.128', 'mean_token_accuracy': '0.6697', 'rewards/chosen': '-0.09444', 'rewards/rejected': '-0.4938', 'rewards/accuracies': '0.675', 'rewards/margins': '0.3995', 'logps/chosen': '-294.8', 'logps/rejected': '-279.6', 'epoch': '0.1881'}
+{'train_runtime': '600.6', 'train_samples_per_second': '0.666', 'train_steps_per_second': '0.083', 'train_loss': '0.5837', 'epoch': '0.1881'}
+  完成:12.0 秒/步 | 峰值 alloc 1.03 GB | LoRA dtype ['torch.float32'] | NaN=False
+
+======================================================================
+                        fp32        bf16            变化
+----------------------------------------------------------------------
+秒/步                     47.1        12.0          292%
+峰值显存 GB                 1.90        1.03           46%
+出现 NaN                 False       False
+
+  step   fp32 loss   bf16 loss        差值   fp32 acc   bf16 acc
+----------------------------------------------------------------------
+     5      0.6878      0.6786   -0.0092      0.625      0.350
+    10      0.6563      0.6690   +0.0128      0.800      0.500
+    15      0.6147      0.6483   +0.0336      0.775      0.525
+    20      0.5827      0.6239   +0.0412      0.825      0.575
+    25      0.5364      0.5620   +0.0256      0.775      0.700
+    30      0.5085      0.5145   +0.0060      0.850      0.775
+    35      0.5096      0.5423   +0.0327      0.925      0.650
+    40      0.5113      0.5385   +0.0271      0.875      0.625
+    45      0.4863      0.5087   +0.0223      0.875      0.675
+    50      0.5230      0.5509   +0.0279      0.925      0.675
+
+loss 平均绝对偏差 0.0238
+判读:
+  ⚠️ 有可见偏差(0.02~0.05)→ 短程可用,长程需再验
+
+已存 outputs/eval/precision_ab.json
